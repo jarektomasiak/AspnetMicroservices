@@ -2,23 +2,23 @@
 {
     public class BasketCheckout
     {
-        public string? UserName { get; set; }
+        public string UserName { get; set; }
         public decimal TotalPrice { get; set; }
 
-        //Adress
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }    
-        public string? EmailAdress { get; set; }
-        public string? AdressLine { get; set; }
-        public string? Country { get; set; }
-        public string? State   { get; set; }
-        public string? ZipCode { get; set; }
+        //Address
+        public string FirstName { get; set; }
+        public string LastName { get; set; }    
+        public string EmailAdress { get; set; }
+        public string AdressLine { get; set; }
+        public string Country { get; set; }
+        public string State   { get; set; }
+        public string ZipCode { get; set; }
 
         //Płatność // Payment
-        public string? CardName { get; set; }
-        public int? CardNumber { get; set; }
-        public string? Expiration { get; set; }
-        public string? CW { get; set; }
+        public string CardName { get; set; }
+        public int CardNumber { get; set; }
+        public string Expiration { get; set; }
+        public string CW { get; set; }
         public int PaymentMetod { get; set; }
     }
 
