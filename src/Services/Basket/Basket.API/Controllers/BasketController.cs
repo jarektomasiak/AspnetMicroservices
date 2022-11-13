@@ -11,6 +11,7 @@ namespace Basket.API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _repository;
+        private readonly ILogger<BasketController> _logger;
 
         public BasketController(IBasketRepository repository)
         {
@@ -31,5 +32,22 @@ namespace Basket.API.Controllers
             await _repository.DeleteBasket(userName);
             return Ok();
         }
+
+        // Get basket by UserId
+        [HttpGet("{id:length(24)}", Name = "GetBasketByUserId")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
+
+        public async Task<ActionResult<ShoppingCart>> GetProductByUserId(string id)
+        {
+            var basket = await _repository.GetBasket(id);
+            if (basket == null)
+            {
+                _logger.LogError($"Basket with id: {id}, not found.");
+                return NotFound();
+            }
+            return Ok(basket);
+        } 
+
     }
 }
