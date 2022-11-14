@@ -33,17 +33,16 @@ namespace Basket.API.Controllers
             return Ok();
         }
 
-        // Get basket by UserId
-        [HttpGet("{id:length(24)}", Name = "GetBasketByUserId")]
+        // Get basket by UserName
+        [HttpGet("{UserName:length(24)}", Name = "GetBasketByUserName")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-
-        public async Task<ActionResult<ShoppingCart>> GetProductByUserId(string id)
+        public async Task<ActionResult<ShoppingCart>> GetBasketByUserName(string username)
         {
-            var basket = await _repository.GetBasket(id);
+            var basket = await _repository.GetBasket(username);
             if (basket == null)
             {
-                _logger.LogError($"Basket with id: {id}, not found.");
+                _logger.LogError($"Basket with username: {username}, not found.");
                 return NotFound();
             }
             return Ok(basket);
